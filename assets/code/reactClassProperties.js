@@ -14,7 +14,7 @@ class UsingClassPropertiesAndStaticFields extends React.Component {
                            // we still have access to this during state initialization.
 
   increase = () => {           // We can benefit from the fact that arrow function
-    this.setState({            // preserves context in which was defined
+    this.setState({            // preserves context in which it was defined
       var: this.state.var + 1  // and set handler directly as a class property
     });
   };

@@ -33,7 +33,11 @@ const imageFileNames = [
   'react.svg',
   'books.png',
   'orly.png',
+  'spa.jpg',
+  'spaVsMpa.png',
   'virtualDom.png',
+  'granularCode.png',
+  'granularDomUpdates.gif',
   'propsState.png',
   'propsState2.png',
   'componentBasics1.webp',
@@ -97,6 +101,7 @@ const sourceFileNames = [
   'errorBoundaryUsage.js',
   'propTypes.js',
   'reactClassProperties.js',
+  'keys.js',
   'pureComponent.js',
 
   // redux
@@ -327,7 +332,9 @@ export default class Presentation extends React.Component {
         controls={false}
         progress="bar"
       >
-        {/* React */}
+
+        {/** React **/}
+
         <FullScreenSlide bgImage={images.chernobyl}>
           <Appear transitionDuration={1000}>
             <div>
@@ -369,26 +376,17 @@ export default class Presentation extends React.Component {
             <Cite margin="10px 0 0 30px">React Docs</Cite>
           </BlockQuote>
         </FullScreenSlide>
-        <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 5vh">
-          <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '5vh', textAlign: 'left' }}>
-          Jumpstart:
-          </Text>
-          <CodePane source={sources.installCRA} style={{ maxHeight: '75vh', overflowY: 'auto' }} theme="light" />
+        <FullScreenSlide bgImage={images.spa}>
+          <Appear>
+            <div style={{ width: '100vw', height: '100vh', backgroundColor: 'rgba(32, 39, 33, 0.50)' }}>
+              <Corner right="7vw" bottom="7vh">
+                <Image src={images.spaVsMpa} style={{ height: '60vh' }} />
+              </Corner>
+            </div>
+          </Appear>
         </FullScreenSlide>
-        <FullScreenSlide bgImage={images.chernobylBlurred} padding={0}>
-          <Image src={images.reactDevTools} />
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 6vw">
-          <Heading style={{ fontSize: '8vh', margin: 0 }}>
-            Virtual DOM
-          </Heading>
-          <Text textColor="secondary" style={{ fontSize: '4.5vh', marginTop: '2vh', textAlign: 'left' }}>
-          Virtual DOM is a programming concept where an ideal, or <span style={{ ...styles.brain }}>virtual</span>, representation of a UI is kept in memory and synced with the <span style={{ ...styles.brain }}>real</span> DOM by a library such as ReactDOM. This process is called <span style={{ ...styles.brain }}>reconciliation</span>.
-          </Text>
-        </FullScreenSlide>
-        <FullScreenSlide bgColor="secondary">
-          <FullScreenImage src={images.virtualDom} />
-        </FullScreenSlide>
+
+        {/* Component Architecture */}
         <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 6vw">
           <Heading style={{ fontSize: '8vh', margin: 0 }}>
             Component Architecture
@@ -406,6 +404,53 @@ export default class Presentation extends React.Component {
         <FullScreenSlide bgColor="secondary">
           <FullScreenImage src={images.componentBasics4} />
         </FullScreenSlide>
+
+        {/* Vitrual DOM */}
+        <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 6vw">
+          <Heading style={{ fontSize: '8vh', margin: 0 }}>
+            Virtual DOM
+          </Heading>
+          <Text textColor="secondary" style={{ fontSize: '4.5vh', marginTop: '2vh', textAlign: 'left' }}>
+          Virtual DOM is a programming concept where an ideal, or <span style={{ ...styles.brain }}>virtual</span>, representation of a UI is kept in memory and synced with the <span style={{ ...styles.brain }}>real</span> DOM by a library such as ReactDOM. This process is called <span style={{ ...styles.brain }}>reconciliation</span>.
+          </Text>
+        </FullScreenSlide>
+        <FullScreenSlide bgColor="secondary">
+          <FullScreenImage src={images.virtualDom} />
+        </FullScreenSlide>
+        <FullScreenSlide bgColor="#282c34">
+          <Corner top="20vh" left="10vw"><Image src={images.granularCode} style={{ width: '40vw' }} /></Corner>
+          <Corner top="20vh" right="15vw"><Image src={images.granularDomUpdates} style={{ height: '60vh' }} /></Corner>
+        </FullScreenSlide>
+
+        <FullScreenSlide bgImage={images.chernobylBlurred} padding="5vh">
+          <Heading style={{ fontSize: '5vh', margin: 0, textAlign: 'left' }}>
+          Reconciliation
+          </Heading>
+          <Text textColor="secondary" style={{ fontSize: '4vh', marginTop: '3vh', textAlign: 'left' }}>
+          Algorithmic problem of generating the minimum number of operations to transform one tree into another:
+          </Text>
+          <List style={{ margin: '1vh 0 1vh 2vh' }}>
+            <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}>Generic solutions → <span style={{ ...styles.brain }}>O(n<sup>3</sup>)</span></ListItem>
+            <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}>React heuristic algorithm → <span style={{ ...styles.brain }}>O(n)</span></ListItem>
+          </List>
+          <Text textColor="secondary" style={{ fontSize: '4vh', marginTop: '3vh', textAlign: 'left' }}>
+            <span style={{ ...styles.brain }}>React heuristic algorithm</span> is based on two assumptions:
+          </Text>
+          <List style={{ margin: '1vh 0 1vh 2vh' }}>
+            <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}>Two elements of different types will produce different trees</ListItem>
+            <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}>Developer can hint at which child elements may be stable across different renders with a <span style={{ ...styles.brain }}>key</span> prop</ListItem>
+          </List>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 5vh">
+          <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '5vh', textAlign: 'left' }}>
+          Jumpstart:
+          </Text>
+          <CodePane source={sources.installCRA} style={{ maxHeight: '75vh', overflowY: 'auto' }} theme="light" />
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.chernobylBlurred} padding={0}>
+          <Image src={images.reactDevTools} />
+        </FullScreenSlide>
+
         <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 2vw">
           <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '5vh', textAlign: 'left' }}>
             React.createElement()
@@ -431,10 +476,10 @@ export default class Presentation extends React.Component {
           <CodePane source={sources.jsx4} style={{ maxHeight: '93vh', overflowY: 'auto' }} lang="jsx" theme="light" />
         </FullScreenSlide>
         <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 2vw">
-          <Heading style={{ fontSize: '5vh', margin: 0, textAlign: 'left' }}>
+          <Heading style={{ fontSize: '5vh', marginBottom: '3vh', textAlign: 'left' }}>
             Synthetic Events
           </Heading>
-          <List style={{ margin: '1vh 0 1vh 2vh' }}>
+          <List style={{ margin: '1vh 0 3vh 2vh' }}>
             <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}>Cross-browser wrapper around browser native events</ListItem>
             <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}>Same interface as browser native events</ListItem>
             <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}>Use camelCase rather than lowercase</ListItem>
@@ -446,7 +491,7 @@ export default class Presentation extends React.Component {
           <Heading style={{ fontSize: '5vh', margin: 0, textAlign: 'left' }}>
           Component Props and State
           </Heading>
-          <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '2vh', textAlign: 'left' }}>
+          <Text textColor="secondary" style={{ fontSize: '4vh', marginTop: '3vh', textAlign: 'left' }}>
           Props
           </Text>
           <List style={{ margin: '1vh 0 1vh 2vh' }}>
@@ -454,7 +499,7 @@ export default class Presentation extends React.Component {
             <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}>Make component re-usable</ListItem>
             <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}>Way to pass info from parent component to child component</ListItem>
           </List>
-          <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '2vh', textAlign: 'left' }}>
+          <Text textColor="secondary" style={{ fontSize: '4vh', marginTop: '3vh', textAlign: 'left' }}>
           State
           </Text>
           <List style={{ margin: '1vh 0 1vh 2vh' }}>
@@ -472,11 +517,11 @@ export default class Presentation extends React.Component {
           <Heading style={{ fontSize: '5vh', margin: 0, textAlign: 'left' }}>
           Defining a Component in React
           </Heading>
-          <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '0.5vh', textAlign: 'left' }}>
+          <Text textColor="secondary" style={{ fontSize: '4vh', marginTop: '3vh', textAlign: 'left' }}>
           Function component
           </Text>
           <CodePane source={sources.functionComponent} style={{ maxHeight: '93vh', overflowY: 'auto' }} lang="jsx" theme="light" />
-          <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '0.5vh', textAlign: 'left' }}>
+          <Text textColor="secondary" style={{ fontSize: '4vh', marginTop: '3vh', textAlign: 'left' }}>
           Class component
           </Text>
           <CodePane source={sources.classComponent} style={{ maxHeight: '93vh', overflowY: 'auto' }} lang="jsx" theme="light" />
@@ -522,9 +567,9 @@ export default class Presentation extends React.Component {
             Typechecking
           </Heading>
           <List style={{ margin: '1vh 0 1vh 2vh' }}>
-            <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}><span style={{ ...styles.brain }}>PropTypes</span> – dynamic typechecking, warns to console</ListItem>
-            <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}><span style={{ ...styles.brain }}>Flow</span> – static typechecking</ListItem>
-            <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}><span style={{ ...styles.brain }}>TypeScript</span> – static typechecking</ListItem>
+            <ListItem style={{ fontSize: '3vh', margin: '0.3vh' }}><span style={{ ...styles.brain }}>PropTypes</span> – dynamic typechecking, warns to console</ListItem>
+            <ListItem style={{ fontSize: '3vh', margin: '0.3vh' }}><span style={{ ...styles.brain }}>Flow</span> – static typechecking</ListItem>
+            <ListItem style={{ fontSize: '3vh', margin: '0.3vh' }}><span style={{ ...styles.brain }}>TypeScript</span> – static typechecking</ListItem>
           </List>
           <CodePane source={sources.propTypes} style={{ maxHeight: '98vh', overflowY: 'auto' }} lang="jsx" theme="light" />
         </FullScreenSlide>
@@ -550,13 +595,13 @@ export default class Presentation extends React.Component {
           <Heading style={{ fontSize: '8vh', margin: 0 }}>
             ErrorBoundary
           </Heading>
-          <Text textColor="secondary" style={{ fontSize: '4.5vh', marginTop: '2vh', textAlign: 'left' }}>
+          <Text textColor="secondary" style={{ fontSize: '4vh', marginTop: '2vh', textAlign: 'left' }}>
           As of React 16, errors that were not caught by any error boundary will result in unmounting of the whole React component tree.
           </Text>
-          <Text textColor="secondary" style={{ fontSize: '4.5vh', marginTop: '2vh', textAlign: 'left' }}>
+          <Text textColor="secondary" style={{ fontSize: '4vh', marginTop: '2vh', textAlign: 'left' }}>
           Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed.
           </Text>
-          <Text textColor="secondary" style={{ fontSize: '4.5vh', marginTop: '2vh', textAlign: 'left' }}>
+          <Text textColor="secondary" style={{ fontSize: '4vh', marginTop: '2vh', textAlign: 'left' }}>
           Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
           </Text>
           <CodePane source={sources.errorBoundaryUsage} lang="jsx" theme="light" />
@@ -565,6 +610,15 @@ export default class Presentation extends React.Component {
           <CodePane source={sources.errorBoundary} style={{ maxHeight: '98vh', overflowY: 'auto' }} lang="jsx" theme="light" />
         </FullScreenSlide>
         <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 0.5vh">
+          <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '0.5vh', textAlign: 'left' }}>
+            Keys, conditional rendering
+          </Text>
+          <CodePane source={sources.keys} style={{ maxHeight: '98vh', overflowY: 'auto' }} lang="jsx" theme="light" />
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 0.5vh">
+          <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '0.5vh', textAlign: 'left' }}>
+            PureComponent
+          </Text>
           <CodePane source={sources.pureComponent} style={{ maxHeight: '98vh', overflowY: 'auto' }} lang="jsx" theme="light" />
         </FullScreenSlide>
         <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 5vw">
@@ -577,29 +631,304 @@ export default class Presentation extends React.Component {
           </List>
         </FullScreenSlide>
         <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 0.5vw">
-          <Text textColor="secondary" style={{ fontSize: '3.8vh', marginTop: '2vh', textAlign: 'left' }}>
+          <Text textColor="secondary" style={{ fontSize: '3.5vh', marginTop: '2vh', textAlign: 'left' }}>
             Higher Order Component: a function that takes a component and returns a component
           </Text>
           <CodePane source={sources.hoc} style={{ maxHeight: '98vh', overflowY: 'auto' }} lang="jsx" theme="light" />
         </FullScreenSlide>
         <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 0.5vw">
-          <Text textColor="secondary" style={{ fontSize: '3.8vh', marginTop: '2vh', textAlign: 'left' }}>
+          <Text textColor="secondary" style={{ fontSize: '3.5vh', marginTop: '2vh', textAlign: 'left' }}>
             Higher Order Component: lifecycle
           </Text>
           <CodePane source={sources.hocLifecycle} style={{ maxHeight: '98vh', overflowY: 'auto' }} lang="jsx" theme="light" />
         </FullScreenSlide>
         <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 0.5vw">
-          <Text textColor="secondary" style={{ fontSize: '3.8vh', marginTop: '2vh', textAlign: 'left' }}>
+          <Text textColor="secondary" style={{ fontSize: '3.5vh', marginTop: '2vh', textAlign: 'left' }}>
             Render Props
           </Text>
           <CodePane source={sources.renderProps} style={{ maxHeight: '98vh', overflowY: 'auto' }} lang="jsx" theme="light" />
         </FullScreenSlide>
         <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 0.5vw">
-          <Text textColor="secondary" style={{ fontSize: '3.8vh', marginTop: '2vh', textAlign: 'left' }}>
+          <Text textColor="secondary" style={{ fontSize: '3.5vh', marginTop: '2vh', textAlign: 'left' }}>
             Render Props: children variation
           </Text>
           <CodePane source={sources.renderPropsChildren} style={{ maxHeight: '98vh', overflowY: 'auto' }} lang="jsx" theme="light" />
         </FullScreenSlide>
+
+        {/** Hooks **/}
+
+        <FullScreenSlide bgImage={images.hooks}>
+          <Corner top="35vh" left="6.5vw">
+            <Heading caps style={{ ...styles.brain3D, fontSize: '13.17vh' }}>React Hooks</Heading>
+          </Corner>
+        </FullScreenSlide>
+        <Slide bgImage={images.hooksBlurred}>
+          <Heading caps style={{ ...styles.brain }}>Motivation</Heading>
+          <Appear><Heading size={4} margin="4vh 0 0 0" textColor="secondary">Why React Hooks?</Heading></Appear>
+          <Appear><Heading fit margin="2vh 0 0 0" textColor="secondary">What problems are we trying to solve?</Heading></Appear>
+        </Slide>
+        <FullScreenSlide bgImage={images.hooksBlurred} style={{ padding: '0 20vw' }}>
+          <Heading caps style={{ ...styles.brain }}>Problems</Heading>
+          <List>
+            <Appear><ListItem textSize="7vh" bold>Reusing Logic</ListItem></Appear>
+            <Appear><ListItem textSize="7vh" bold>Giant Components</ListItem></Appear>
+            <Appear><ListItem textSize="7vh" bold>Confusing Classes</ListItem></Appear>
+          </List>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} style={{ padding: '0 20vw' }}>
+          <Heading size={2} style={{ ...styles.brain }}>Reusing Logic</Heading>
+          <Appear>
+            <List>
+              <ListItem fit bold style={{ fontSize: '5vh' }}>Higher Order Components</ListItem>
+              <ListItem bold style={{ fontSize: '5vh' }}>Render Props</ListItem>
+              <Text textColor="secondary" bold textSize="3.8vh" margin="6vh 0 0 0">
+                Both of these patterns have a downside:<br/>
+                they change the component hierarchy
+              </Text>
+            </List>
+          </Appear>
+        </FullScreenSlide>
+        <Slide transition={['zoom']} bgImage={images.wrapperHell}>
+          <Heading caps style={{ ...styles.brain, lineHeight: 1.2, border: `1vh solid ${theme.screen.colors.brainDark}` }}>Wrapper Hell</Heading>
+        </Slide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em 0.6em 0.4em">
+          <Heading size={2} style={{ ...styles.brain, lineHeight: 1.3 }}>Giant Components</Heading>
+          <CodePane
+            lang="jsx"
+            source={sources.giantComponent}
+            theme="light"
+            style={{ maxHeight: '80vh', overflowY: 'auto' }}
+          />
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} style={{ padding: '0 10vw' }}>
+          <Heading size={2} style={{ ...styles.brain }}>Confusing Classes</Heading>
+          <List margin="6vh 0 0 0">
+            <Appear><ListItem fit bold style={{ fontSize: '7vh' }}>Hard for Humans</ListItem></Appear>
+            <Appear><ListItem bold style={{ fontSize: '7vh' }}>Hard for Machines</ListItem></Appear>
+            <Appear>
+              <Text textColor="secondary" textSize="3.7vh" margin="6vh 0 0 0">
+                Humans have problems with this.<br />
+                Classes don't minify well because method names can't be changed.<br />
+                Unused class methods are not stripped out.<br />
+                Hard for compilers to optimize.
+              </Text>
+            </Appear>
+          </List>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.6em">
+          <Heading caps lineHeight={1.5} >Before Hooks...</Heading>
+          <Appear><Text textColor="secondary" textSize="4.5vh">You started with a <span style={{ ...styles.brain, fontWeight: 'bold' }}>Function/Dumb/Stateless</span> component</Text></Appear>
+          <Appear><Text textColor="secondary" textSize="4.5vh">and then when you needed state or lifecycle</Text></Appear>
+          <Appear><Text textColor="secondary" textSize="4.5vh">you re-wrote it to <span style={{ ...styles.brain, fontWeight: 'bold' }}>Class/Smart/Stateful</span> component</Text></Appear>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.6em">
+          <Heading caps lineHeight={1.5} >Before Hooks...</Heading>
+          <Text textColor="secondary" textSize="6vh">React didn't provide a <span style={{ ...styles.brain, fontWeight: 'bold' }}>stateful</span> primitive<br/>other than a <span style={{ ...styles.brain, fontWeight: 'bold' }}>class component</span></Text>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.6em">
+          <Heading caps lineHeight={1.5} >Hooks</Heading>
+          <Text textColor="secondary" textSize="6vh">Hooks let you use state<br/>and other React features<br/>without writing a class</Text>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.6em">
+          <Heading caps lineHeight={1.5} >Hooks</Heading>
+          <Text textColor="secondary" textSize="6vh">Hooks are functions<br/>that let you "hook into" React features<br/>from functional components</Text>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.6em">
+          <Heading caps lineHeight={1.5} >Hooks</Heading>
+          <Text textColor="secondary" textSize="6vh">Introduced in React v16.8.0</Text>
+          <Text textColor="secondary" textSize="6vh">Supported by React Native since v0.59</Text>
+        </FullScreenSlide>
+        <Slide bgImage={images.hooksBlurred}>
+          <Heading caps style={{ ...styles.brain }}>Basic Hooks</Heading>
+          <List>
+            <ListItem style={{ fontSize: '6vh' }}>useState</ListItem>
+            <ListItem style={{ fontSize: '6vh' }}>useEffect</ListItem>
+            <ListItem style={{ fontSize: '6vh' }}>useContext</ListItem>
+          </List>
+        </Slide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em 0.6em 0.4em">
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1.2 }}>useState</Heading>
+          <CodePane
+            lang="jsx"
+            source={sources.useState}
+            theme="light"
+            style={{ maxHeight: '80vh', overflowY: 'auto' }}
+          />
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">Returns a stateful value, and a function to update it.</Text>
+          <Appear><Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">During the initial render, the returned state (<span style={{ ...styles.brain }}>state</span>) is the same as the value passed as the first argument (<span style={{ ...styles.brain }}>initialState</span>).</Text></Appear>
+          <Appear><Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">The <span style={{ ...styles.brain }}>setState</span> function is used to update the state. It accepts a new state value and enqueues a re-render of the component.</Text></Appear>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useState</Heading>
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">
+            Functional updates:
+          </Text>
+          <CodePane
+            lang="jsx"
+            source={sources.useStateFunctionalUpdates}
+            theme="light"
+            style={{ maxHeight: '80vh', overflowY: 'auto' }}
+          />
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 6vh">
+            If the new state is computed using the previous state, you can pass a function to setState. The function will receive the previous value, and return an updated value.
+          </Text>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useState</Heading>
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">
+            Lazy initial state:
+          </Text>
+          <CodePane
+            lang="jsx"
+            source={sources.useStateLazyInitialState}
+            theme="light"
+            style={{ maxHeight: '80vh', overflowY: 'auto' }}
+          />
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">
+            If the initial state is the result of an expensive computation, you may provide a function instead, which will be executed only on the initial render
+          </Text>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useEffect</Heading>
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">
+            Conditionally firing an effect:
+          </Text>
+          <CodePane
+            lang="jsx"
+            source={sources.useEffectConditional}
+            theme="light"
+            style={{ maxHeight: '80vh', overflowY: 'auto' }}
+          />
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">
+            Firing an effect on mount:
+          </Text>
+          <CodePane
+            lang="jsx"
+            source={sources.useEffectOnMount}
+            theme="light"
+            style={{ maxHeight: '80vh', overflowY: 'auto' }}
+          />
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useEffect</Heading>
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">
+            Cleaning up an effect:
+          </Text>
+          <CodePane
+            lang="jsx"
+            source={sources.useEffectCleanup}
+            theme="light"
+            style={{ maxHeight: '80vh', overflowY: 'auto' }}
+          />
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">
+          Often, effects create resources that need to be cleaned up before the component leaves the screen, such as a subscription or timer ID. To do this, the function passed to useEffect may return a clean-up function.
+          </Text>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useContext</Heading>
+          <CodePane
+            lang="jsx"
+            source={sources.useContext}
+            theme="light"
+            style={{ maxHeight: '80vh', overflowY: 'auto' }}
+          />
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">
+            Accepts a context object (the value returned from React.createContext) and returns the current context value for that context. 
+          </Text>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 2vw">
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>Rules of Hooks</Heading>
+          <List>
+            <ListItem style={{ fontSize: '5vh' }}>Only Call Hooks at the Top Level</ListItem>
+            <ListItem style={{ fontSize: '5vh' }}>Only Call Hooks from React Functions</ListItem>
+          </List>
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">
+            Don’t call Hooks inside loops, conditions, or nested functions. Instead, always use Hooks at the top level of your React function.
+          </Text>
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">
+            Don’t call Hooks from regular JavaScript functions. Only from function components or custom hooks.
+          </Text>
+          <Text textColor="secondary" textSize="3.4vh" textAlign="left" margin="2vh 0 0 0">
+            ESLint plugin enforcing the rules: <Link href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank">eslint-plugin-react-hooks</Link>
+          </Text>
+        </FullScreenSlide>
+        <Slide bgImage={images.hooksBlurred}>
+          <Heading size={3} caps style={{ ...styles.brain }}>Additional Hooks</Heading>
+          <List>
+            <ListItem style={{ fontSize: '5vh' }}>useReducer</ListItem>
+            <ListItem style={{ fontSize: '5vh' }}>useCallback</ListItem>
+            <ListItem style={{ fontSize: '5vh' }}>useMemo</ListItem>
+            <ListItem style={{ fontSize: '5vh' }}>useRef</ListItem>
+            <ListItem style={{ fontSize: '5vh' }}>useImperativeHandle</ListItem>
+            <ListItem style={{ fontSize: '5vh' }}>useLayoutEffect</ListItem>
+            <ListItem style={{ fontSize: '5vh' }}>useDebugValue</ListItem>
+          </List>
+        </Slide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useReducer</Heading>
+          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
+            Passing the initial state:
+          </Text>
+          <CodePane source={sources.useReducer} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
+          <Text textColor="secondary" textSize="4vh" textAlign="left" margin="4vh 0 0 0">
+            Lazy initialization:
+          </Text>
+          <CodePane source={sources.useReducerInit} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useCallback</Heading>
+          <CodePane source={sources.useCallback} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
+          <Text textColor="secondary" textSize="4vh" textAlign="left" margin="4vh 0 0 0">
+            Returns a memoized callback.
+          </Text>
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useMemo</Heading>
+          <CodePane source={sources.useMemo} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
+          <Text textColor="secondary" textSize="4vh" textAlign="left" margin="4vh 0 0 0">
+            Returns a memoized value.
+          </Text>
+        </FullScreenSlide>
+        <Slide bgImage={images.hooksBlurred}>
+          <Heading size={3} caps style={{ ...styles.brain }}>Custom Hooks</Heading>
+          <Text textColor="secondary" textSize="4vh" textAlign="left" margin="4vh 0 0 0">
+            Custom Hooks lets you extract component logic into reusable functions.
+          </Text>
+          <Text textColor="secondary" textSize="4vh" textAlign="left" margin="4vh 0 0 0">
+            A custom Hook is a JavaScript function whose name starts with ”use” and that may call other Hooks.
+          </Text>
+        </Slide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain }}>Custom Hook</Heading>
+          <CodePane source={sources.customHook} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain }}>Custom useFormInput</Heading>
+          <CodePane source={sources.customUseFormInput} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain }}>Custom useDocumentTitle</Heading>
+          <CodePane source={sources.customUseDocumentTitle} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
+        </FullScreenSlide>
+        <FullScreenSlide style={{ padding: '5vw' }}>
+          <BlockQuote>
+            <Quote textColor="secondary" style={{ fontSize: '3.6vh', lineHeight: 1.2, borderColor: theme.screen.colors.secondary }}>
+              With hooks we separate code not based on the lifecycle method name but based on what the code is doing
+            </Quote>
+            <Cite margin="10px 0 0 30px">Dan @ React Conf 2018</Cite>
+          </BlockQuote>
+        </FullScreenSlide>
+        <FullScreenVideo name="separationOfConcerns" format="mp4" loop />
+
+        {/* End of episode 1 */}
+        <FullScreenSlide bgImage={images.chernobyl}>
+          <div>
+            <img src={images.react} style={{ height: '60vh' }} />
+            <Heading caps style={{ ...styles.brain, fontSize: '5.1vh' }}>To Be Continued...</Heading>
+          </div>
+        </FullScreenSlide>
+
+        {/** Episode 2: Redux, Router, Redux **/}
+
+        {/* Talk: how to sync state between two components, reminder of lifting state up, lift up to the main component - enough for global state? */}
         <FullScreenSlide bgImage={images.chernobylBlurred} padding={0}>
           <Text textColor="secondary" style={{ fontSize: '4.5vh', margin: '5vh', }}>
             How do we synchronize states of the two sibling components?
@@ -607,7 +936,8 @@ export default class Presentation extends React.Component {
           <Image src={images.syncState} />
         </FullScreenSlide>
 
-        {/* Redux */}
+        {/** Redux **/}
+
         <FullScreenSlide bgImage={images.collider}>
           <Corner bottom="33vh" right="18.9vw">
             <Heading caps style={{ ...styles.brain3D, fontSize: '14.63vh' }}>Redux</Heading>
@@ -775,7 +1105,8 @@ export default class Presentation extends React.Component {
           <Image src={images.reduxDevTools} />
         </FullScreenSlide>
 
-        {/* Router */}
+        {/** Router **/}
+
         <FullScreenSlide bgImage={images.routes}>
           <Corner bottom="27vh" left="4vw">
             <Heading caps style={{ ...styles.brain3D, fontSize: '14.63vh' }}>React Router</Heading>
@@ -1110,264 +1441,10 @@ export default class Presentation extends React.Component {
           <Corner right="2vw" bottom="2vh"><Link href="https://codesandbox.io/s/connected-react-router-yllkz" target="_blank" style={{ fontSize: '4vh' }}>Example</Link></Corner>
         </FullScreenSlide>
 
-        {/* Hooks */}
-        <FullScreenSlide bgImage={images.hooks}>
-          <Corner top="19.2vh" left="5.8vw">
-            <Heading caps style={{ ...styles.brain3D, fontSize: '14.63vh' }}>React Hooks</Heading>
-          </Corner>
-        </FullScreenSlide>
-        <Slide bgImage={images.hooksBlurred}>
-          <Heading caps style={{ ...styles.brain }}>Motivation</Heading>
-          <Appear><Heading size={4} textColor="secondary">Why React Hooks?</Heading></Appear>
-          <Appear><Heading fit textColor="secondary">What problems are we trying to solve?</Heading></Appear>
-        </Slide>
-        <FullScreenSlide bgImage={images.hooksBlurred} style={{ padding: '0 20vw' }}>
-          <Heading caps style={{ ...styles.brain }}>Problems</Heading>
-          <List>
-            <Appear><ListItem textSize="7vh" bold>Reusing Logic</ListItem></Appear>
-            <Appear><ListItem textSize="7vh" bold>Giant Components</ListItem></Appear>
-            <Appear><ListItem textSize="7vh" bold>Confusing Classes</ListItem></Appear>
-          </List>
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} style={{ padding: '0 20vw' }}>
-          <Heading size={2} style={{ ...styles.brain }}>Reusing Logic</Heading>
-          <List>
-            <Appear><ListItem fit bold style={{ fontSize: '7vh' }}>Higher Order Components</ListItem></Appear>
-            <Appear><ListItem bold style={{ fontSize: '7vh' }}>Render Props</ListItem></Appear>
-            <Appear>
-              <Text textColor="secondary" bold textSize="5vh" margin="6vh 0 0 0">
-                Both of these patterns have a downside:<br/>
-                they change the component hierarchy
-              </Text>
-            </Appear>
-          </List>
-        </FullScreenSlide>
-        <Slide transition={['zoom']} bgImage={images.wrapperHell}>
-          <Heading caps style={{ ...styles.brain, lineHeight: 1.2, border: `1vh solid ${theme.screen.colors.brainDark}` }}>Wrapper Hell</Heading>
-        </Slide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em 0.6em 0.4em">
-          <Heading size={2} style={{ ...styles.brain, lineHeight: 1.3 }}>Giant Components</Heading>
-          <CodePane
-            lang="jsx"
-            source={sources.giantComponent}
-            theme="light"
-            style={{ maxHeight: '80vh', overflowY: 'auto' }}
-          />
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} style={{ padding: '0 10vw' }}>
-          <Heading size={2} style={{ ...styles.brain }}>Confusing Classes</Heading>
-          <List>
-            <Appear><ListItem fit bold style={{ fontSize: '8vh' }}>Hard for Humans</ListItem></Appear>
-            <Appear><ListItem bold style={{ fontSize: '8vh' }}>Hard for Machines</ListItem></Appear>
-            <Appear>
-              <Text textColor="secondary" textSize="6vh" margin="6vh 0 0 0">
-                Humans have problems with this.<br />Classes don't minify well because method names can't be changed.<br />Unused class methods are not stripped out.<br />Hard for compilers to optimize.
-              </Text>
-            </Appear>
-          </List>
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.6em">
-          <Heading caps lineHeight={1.5} >Before Hooks...</Heading>
-          <Appear><Text textColor="secondary" textSize="5.3vh">You started with a <span style={{ ...styles.brain, fontWeight: 'bold' }}>Function/Dumb/Stateless</span> component</Text></Appear>
-          <Appear><Text textColor="secondary" textSize="5.3vh">and then when you needed state or lifecycle</Text></Appear>
-          <Appear><Text textColor="secondary" textSize="5.3vh">you re-wrote it to <span style={{ ...styles.brain, fontWeight: 'bold' }}>Class/Smart/Stateful</span> component</Text></Appear>
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.6em">
-          <Heading caps lineHeight={1.5} >Before Hooks...</Heading>
-          <Text textColor="secondary" textSize="6.5vh">React didn't provide a <span style={{ ...styles.brain, fontWeight: 'bold' }}>stateful</span> primitive<br/>other than a <span style={{ ...styles.brain, fontWeight: 'bold' }}>class component</span></Text>
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.6em">
-          <Heading caps lineHeight={1.5} >Hooks</Heading>
-          <Text textColor="secondary" textSize="7vh">Hooks let you use state<br/>and other React features<br/>without writing a class</Text>
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.6em">
-          <Heading caps lineHeight={1.5} >Hooks</Heading>
-          <Text textColor="secondary" textSize="7vh">Hooks are functions<br/>that let you "hook into" React features<br/>from functional components</Text>
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.6em">
-          <Heading caps lineHeight={1.5} >Hooks</Heading>
-          <Text textColor="secondary" textSize="7vh">Introduced in React v16.8.0</Text>
-          <Text textColor="secondary" textSize="7vh">Supported by React Native since v0.59</Text>
-        </FullScreenSlide>
-        <Slide bgImage={images.hooksBlurred}>
-          <Heading caps style={{ ...styles.brain }}>Basic Hooks</Heading>
-          <List>
-            <ListItem style={{ fontSize: '8vh' }}>useState</ListItem>
-            <ListItem style={{ fontSize: '8vh' }}>useEffect</ListItem>
-            <ListItem style={{ fontSize: '8vh' }}>useContext</ListItem>
-          </List>
-        </Slide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em 0.6em 0.4em">
-          <Heading size={3} style={{ ...styles.brain, lineHeight: 1.2 }}>useState</Heading>
-          <CodePane
-            lang="jsx"
-            source={sources.useState}
-            theme="light"
-            style={{ maxHeight: '80vh', overflowY: 'auto' }}
-          />
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">Returns a stateful value, and a function to update it.</Text>
-          <Appear><Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">During the initial render, the returned state (<span style={{ ...styles.brain }}>state</span>) is the same as the value passed as the first argument (<span style={{ ...styles.brain }}>initialState</span>).</Text></Appear>
-          <Appear><Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">The <span style={{ ...styles.brain }}>setState</span> function is used to update the state. It accepts a new state value and enqueues a re-render of the component.</Text></Appear>
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
-          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useState</Heading>
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-            Functional updates:
-          </Text>
-          <CodePane
-            lang="jsx"
-            source={sources.useStateFunctionalUpdates}
-            theme="light"
-            style={{ maxHeight: '80vh', overflowY: 'auto' }}
-          />
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 6vh">
-            If the new state is computed using the previous state, you can pass a function to setState. The function will receive the previous value, and return an updated value.
-          </Text>
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
-          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useState</Heading>
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-            Lazy initial state:
-          </Text>
-          <CodePane
-            lang="jsx"
-            source={sources.useStateLazyInitialState}
-            theme="light"
-            style={{ maxHeight: '80vh', overflowY: 'auto' }}
-          />
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-            If the initial state is the result of an expensive computation, you may provide a function instead, which will be executed only on the initial render
-          </Text>
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
-          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useEffect</Heading>
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-            Conditionally firing an effect:
-          </Text>
-          <CodePane
-            lang="jsx"
-            source={sources.useEffectConditional}
-            theme="light"
-            style={{ maxHeight: '80vh', overflowY: 'auto' }}
-          />
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-            Firing an effect on mount:
-          </Text>
-          <CodePane
-            lang="jsx"
-            source={sources.useEffectOnMount}
-            theme="light"
-            style={{ maxHeight: '80vh', overflowY: 'auto' }}
-          />
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
-          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useEffect</Heading>
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-            Cleaning up an effect:
-          </Text>
-          <CodePane
-            lang="jsx"
-            source={sources.useEffectCleanup}
-            theme="light"
-            style={{ maxHeight: '80vh', overflowY: 'auto' }}
-          />
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-          Often, effects create resources that need to be cleaned up before the component leaves the screen, such as a subscription or timer ID. To do this, the function passed to useEffect may return a clean-up function.
-          </Text>
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
-          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useContext</Heading>
-          <CodePane
-            lang="jsx"
-            source={sources.useContext}
-            theme="light"
-            style={{ maxHeight: '80vh', overflowY: 'auto' }}
-          />
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-            Accepts a context object (the value returned from React.createContext) and returns the current context value for that context. 
-          </Text>
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 2vw">
-          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>Rules of Hooks</Heading>
-          <List>
-            <ListItem style={{ fontSize: '8vh' }}>Only Call Hooks at the Top Level</ListItem>
-            <ListItem style={{ fontSize: '8vh' }}>Only Call Hooks from React Functions</ListItem>
-          </List>
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-            Don’t call Hooks inside loops, conditions, or nested functions. Instead, always use Hooks at the top level of your React function.
-          </Text>
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-            Don’t call Hooks from regular JavaScript functions. Only from function components or custom hooks.
-          </Text>
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-            ESLint plugin enforcing the rules: <Link href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank">eslint-plugin-react-hooks</Link>
-          </Text>
-        </FullScreenSlide>
-        <Slide bgImage={images.hooksBlurred}>
-          <Heading size={3} caps style={{ ...styles.brain }}>Additional Hooks</Heading>
-          <List>
-            <ListItem style={{ fontSize: '8vh' }}>useReducer</ListItem>
-            <ListItem style={{ fontSize: '8vh' }}>useCallback</ListItem>
-            <ListItem style={{ fontSize: '8vh' }}>useMemo</ListItem>
-            <ListItem style={{ fontSize: '8vh' }}>useRef</ListItem>
-            <ListItem style={{ fontSize: '8vh' }}>useImperativeHandle</ListItem>
-            <ListItem style={{ fontSize: '8vh' }}>useLayoutEffect</ListItem>
-            <ListItem style={{ fontSize: '8vh' }}>useDebugValue</ListItem>
-          </List>
-        </Slide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
-          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useReducer</Heading>
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
-            Passing the initial state:
-          </Text>
-          <CodePane source={sources.useReducer} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="4vh 0 0 0">
-            Lazy initialization:
-          </Text>
-          <CodePane source={sources.useReducerInit} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
-          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useCallback</Heading>
-          <CodePane source={sources.useCallback} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="4vh 0 0 0">
-            Returns a memoized callback.
-          </Text>
-          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useMemo</Heading>
-          <CodePane source={sources.useMemo} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="4vh 0 0 0">
-            Returns a memoized value.
-          </Text>
-        </FullScreenSlide>
-        <Slide bgImage={images.hooksBlurred}>
-          <Heading size={3} caps style={{ ...styles.brain }}>Custom Hooks</Heading>
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="4vh 0 0 0">
-            Custom Hooks lets you extract component logic into reusable functions.
-          </Text>
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="4vh 0 0 0">
-            A custom Hook is a JavaScript function whose name starts with ”use” and that may call other Hooks.
-          </Text>
-        </Slide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
-          <Heading size={3} style={{ ...styles.brain }}>Custom Hook</Heading>
-          <CodePane source={sources.customHook} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
-          <Heading size={3} style={{ ...styles.brain }}>Custom useFormInput</Heading>
-          <CodePane source={sources.customUseFormInput} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
-          <Heading size={3} style={{ ...styles.brain }}>Custom useDocumentTitle</Heading>
-          <CodePane source={sources.customUseDocumentTitle} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
-        </FullScreenSlide>
-        <FullScreenSlide style={{ padding: '5vw' }}>
-          <BlockQuote>
-            <Quote textColor="secondary" style={{ fontSize: '5vh', lineHeight: 1.2, borderColor: theme.screen.colors.secondary }}>
-              With hooks we separate code not based on the lifecycle method name but based on what the code is doing
-            </Quote>
-            <Cite margin="10px 0 0 30px">Dan @ React Conf 2018</Cite>
-          </BlockQuote>
-        </FullScreenSlide>
-        <FullScreenVideo name="separationOfConcerns" format="mp4" loop />
+        {/* Some more hooks! Maybe a captain hook here */}
+
+        {/* Redux Killer */}
+        {/* Remind them of what useReducer and useContext are, talk about pros and cons */}
         <Slide>
           <BlockQuote>
             <Quote textColor="secondary" style={{ fontSize: '5vh', lineHeight: 1.2, borderColor: theme.screen.colors.secondary }}>
@@ -1381,6 +1458,8 @@ export default class Presentation extends React.Component {
           <Image src={images.reduxKiller} />
           <Corner right="2vw" bottom="2vh"><Link href="https://medium.com/javascript-scene/do-react-hooks-replace-redux-210bab340672" target="_blank" style={{ fontSize: '4vh' }}>Do React Hooks Replace Redux?</Link></Corner>
         </Slide>
+
+        {/* Router, Redux API Hooks */}
         <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
           <Heading size={3} style={{ ...styles.brain }}>React Redux API Hooks</Heading>
           <CodePane source={sources.reactReduxApiHooks} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />

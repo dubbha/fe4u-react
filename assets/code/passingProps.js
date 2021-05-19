@@ -1,14 +1,13 @@
-const Button = (props) => (           // Controlled component, stateless
+const Button = (props) => (                           // Stateless component
     <button onClick={props.onClick}>
       {props.name}
     </button>
 );
 
-class App extends React.Component {   // Stateful component
+class App extends React.Component {                    // Stateful component
   constructor(props) {
-    super(props);       // MUST pass props to super()
+    super(props);                              // MUST pass props to super()
     this.state = { name: 'John' }
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
@@ -18,7 +17,10 @@ class App extends React.Component {   // Stateful component
   render() {
     return (
       <div>
-        <Button name={this.state.name} onClick={this.handleClick} />
+        <Button
+          name={this.state.name}
+          onClick={() => this.handleClick()}       // arrow function binding
+        />
       </div>
     );
   };
