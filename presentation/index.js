@@ -49,6 +49,15 @@ const imageFileNames = [
   'reactDevTools.png',
   'syncState.webp',
 
+  // hooks
+  'hooks.jpg',
+  'hooksBlurred.jpg',
+  'whatever.jpg',
+  'devCommunity.webp',
+  'wrapperHell.webp',
+  'reduxKiller.webp',
+  'karloff.webp',
+
   // redux
   'collider.webp',
   'colliderBlurred.webp',
@@ -68,14 +77,6 @@ const imageFileNames = [
   'hashRouter.png',
   'browserRouter.png',
   'browserRouterOnStatic.gif',
-
-  // hooks
-  'hooks.jpg',
-  'hooksBlurred.jpg',
-  'whatever.jpg',
-  'devCommunity.webp',
-  'wrapperHell.webp',
-  'reduxKiller.webp'
 ];
 const reqImage = name => ({ [name.split('.')[0]]: require(`../assets/${name}`) });
 const images = imageFileNames.reduce((acc, name) => ({ ...acc, ...reqImage(name) }), {});
@@ -441,15 +442,6 @@ export default class Presentation extends React.Component {
             <ListItem style={{ fontSize: '4vh', margin: '0.3vh' }}>Developer can hint at which child elements may be stable across different renders with a <span style={{ ...styles.brain }}>key</span> prop</ListItem>
           </List>
         </FullScreenSlide>
-        <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 5vh">
-          <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '5vh', textAlign: 'left' }}>
-          Jumpstart:
-          </Text>
-          <CodePane source={sources.installCRA} style={{ maxHeight: '75vh', overflowY: 'auto' }} theme="light" />
-        </FullScreenSlide>
-        <FullScreenSlide bgImage={images.chernobylBlurred} padding={0}>
-          <Image src={images.reactDevTools} />
-        </FullScreenSlide>
 
         <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 2vw">
           <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '5vh', textAlign: 'left' }}>
@@ -653,6 +645,15 @@ export default class Presentation extends React.Component {
             Render Props: children variation
           </Text>
           <CodePane source={sources.renderPropsChildren} style={{ maxHeight: '98vh', overflowY: 'auto' }} lang="jsx" theme="light" />
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.chernobylBlurred} padding="0 5vh">
+          <Text textColor="secondary" style={{ fontSize: '5vh', marginTop: '5vh', textAlign: 'left' }}>
+          Jumpstart:
+          </Text>
+          <CodePane source={sources.installCRA} style={{ maxHeight: '75vh', overflowY: 'auto' }} theme="light" />
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.chernobylBlurred} padding={0}>
+          <Image src={images.reactDevTools} />
         </FullScreenSlide>
 
         {/** Hooks **/}
@@ -1379,7 +1380,8 @@ export default class Presentation extends React.Component {
           <Corner right="0.5vw" bottom="0.5vh"><Link href="https://pshrmn.github.io/route-tester/" target="_blank" style={{ fontSize: '4vh' }}>https://pshrmn.github.io/route-tester</Link></Corner>
         </FullScreenSlide>
 
-        <FullScreenSlide bgImage={images.routesBlurred} padding="0 0.5vw 1vh 0.5vw">
+        {/* Redux Integration, blocked updates; Deep Integration, connected-react-router */}
+        {/* <FullScreenSlide bgImage={images.routesBlurred} padding="0 0.5vw 1vh 0.5vw">
           <Heading caps style={{ ...styles.brain, lineHeight: '10vh', fontSize: '8vh', margin: 0 }}>Redux Integration</Heading>
           <Text textColor="secondary" textSize="4.5vh" textAlign="left">
             <span style={{ ...styles.brain }}>Blocked Updates</span> issue happens when a <span style={{ ...styles.brain }}>connected</span> component is not a <span style={{ ...styles.brain }}>route</span> component.
@@ -1439,9 +1441,12 @@ export default class Presentation extends React.Component {
             style={{ maxHeight: '96vh', overflowY: 'auto' }}
           />
           <Corner right="2vw" bottom="2vh"><Link href="https://codesandbox.io/s/connected-react-router-yllkz" target="_blank" style={{ fontSize: '4vh' }}>Example</Link></Corner>
-        </FullScreenSlide>
+        </FullScreenSlide> */}
 
-        {/* Some more hooks! Maybe a captain hook here */}
+        {/* Some more hooks! Maybe captain hook here */}
+        <FullScreenSlide bgImage={images.karloff}>
+          <Corner left="6vw" bottom="3vh"><Heading size={2} style={{ color: '#d2d2d2' }}>More Hooks!!</Heading></Corner>
+        </FullScreenSlide>
 
         {/* Redux Killer */}
         {/* Remind them of what useReducer and useContext are, talk about pros and cons */}
@@ -1452,7 +1457,7 @@ export default class Presentation extends React.Component {
             </Quote>
             <Cite margin="10px 0 0 30px">Ryan Florence</Cite>
           </BlockQuote>
-          <Appear><div style={{ fontSize: '4vh' }}><Corner right="2vw" bottom="2vh">useReducer + useContext = <Link href="https://codesandbox.io/s/redux-killer-c4n9b" target="_blank" style={{ fontSize: '4vh' }}>ReduxKiller</Link></Corner></div></Appear>
+          <div style={{ fontSize: '4vh' }}><Corner right="2vw" bottom="2vh">useReducer + useContext = <Link href="https://codesandbox.io/s/redux-killer-c4n9b" target="_blank" style={{ fontSize: '4vh' }}>ReduxKiller</Link></Corner></div>
         </Slide>
         <Slide>
           <Image src={images.reduxKiller} />
